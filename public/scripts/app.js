@@ -1,79 +1,42 @@
 'use strict';
 
-//Variables
 var appRoot = document.getElementById('app');
-var user = {
-    name: 'Aleks',
-    age: 26,
-    location: 'Ukraine'
-};
-var tempData = {
-    title: 'Indecision App',
-    subTitle: 'Challenge subtitle',
-    options: ['One', 'Two']
+var btnText = 'Show details';
+var hiddenVar = true;
 
-    //JSX = javaScript XML
-    //Make sure to have srapper div
-};var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        tempData.title
-    ),
-    tempData.subTitle && React.createElement(
-        'p',
-        null,
-        tempData.subTitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        tempData.options.length > 0 ? 'Here are your options:' : 'No options'
-    ),
-    React.createElement(
-        'ol',
+var showHide = function showHide() {
+    if (hiddenVar) {
+        btnText = 'Hide details';
+        hiddenVar = false;
+        render();
+    } else {
+        btnText = 'Show details';
+        hiddenVar = true;
+        render();
+    }
+};
+
+var render = function render() {
+    var domStructure = React.createElement(
+        'div',
         null,
         React.createElement(
-            'li',
+            'h1',
             null,
-            tempData.options[0]
+            'Visibility toggle'
         ),
         React.createElement(
-            'li',
-            null,
-            tempData.options[1]
-        )
-    )
-);
-
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
+            'button',
+            { onClick: showHide },
+            btnText
+        ),
+        React.createElement(
             'p',
-            null,
-            'Location: ',
-            location
-        );
-    }
-}
-// h1 is a turnery operator
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
-);
+            { hidden: hiddenVar },
+            'Hidden text shown'
+        )
+    );
+    ReactDOM.render(domStructure, appRoot);
+};
 
-ReactDOM.render(template, appRoot);
+render();
