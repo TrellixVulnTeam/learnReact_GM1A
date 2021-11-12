@@ -1,78 +1,106 @@
-// //Variables
-const appRoot = document.getElementById('app');
-const user = {
-    name: 'Aleks',
-    age: 26,
-    location: 'Ukraine'
-};
-const tempData = {
-    title: 'Indecision App',
-    subTitle: 'Challenge subtitle',
-    options: []
-}
+// const obj = {
+//     name: 'Test',
+//     getName() {
+//         return this.name;
+//     }
 
-//JSX = javaScript XML
+// };
+// const getName = obj.getName.bind(obj);
 
-const onFormSubmit = (e) => {
-    e.preventDefault();
-
-    const option = e.target.elements.option.value;
-
-    if (option) {
-        tempData.options.push(option);
-        e.target.elements.option.value = '';
-        render();
-    }
-};
+// console.log(getName())
 
 
+class IndecisionApp extends React.Component {
+    render() {
+        const title = 'Indecision App';
+        const subTitle = 'Put your life on random';
+        const options = ['One', 'Two', 'Three'];
 
-function getLocation(location) {
-    if (location) {
-        return <p>Location: {location}</p>;
+        return (
+            <div>
+                <Header title={title} subTitle={subTitle} />
+                <Action />
+                <Options options={options} />
+                <AddOption />
+            </div>
+        )
     }
 }
-// h1 is a turnery operator
-const templateTwo = (
-    <div>
-        <h1>{user.name ? user.name : 'Anonymous'}</h1>
-        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-        {getLocation(user.location)}
-    </div>
-);
 
-const clearArray = () => {
-    tempData.options = [];
-    render();
-};
-
-const onMakeDecision = () => {
-    const randomNum = Math.floor(Math.random() * tempData.options.length);
-    const option = tempData.options[randomNum];
-    alert(option)
+class Header extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+                <h2>{this.props.subTitle}</h2>
+            </div>
+        )
+    }
 }
 
-const render = () => {
-    //Make sure to have srapper div
-    const template = (
-        < div >
-            <h1>{tempData.title}</h1>
-            {tempData.subTitle && <p>{tempData.subTitle}</p>}
-            <p>{tempData.options.length > 0 ? 'Here are your options:' : 'No options'}</p>
-            <button disabled={tempData.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
-            <button onClick={clearArray}>Remove All</button>
-            <ol>
-                {tempData.options.map((item) => {
-                    return <li key={item}>{item}</li>;
-                })}
-            </ol>
-            <form onSubmit={onFormSubmit}>
-                <input type='text' name='option'></input>
-                <button>Add Option</button>
-            </form>
-        </div >
-    );
-    ReactDOM.render(template, appRoot);
+class Action extends React.Component {
+    handlePick() {
+        alert('Handle Picked');
+    }
+    render() {
+        return (
+            <div>
+                <button onClick={this.handlePick}>What Should I do?</button>
+            </div>
+        )
+    }
 }
 
-render();
+class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        this.removeAll = this.removeAll.bind(this);
+    }
+    removeAll() {
+        console.log(this.props.options)
+        // alert('All removed');
+    }
+    render() {
+        return (
+            <div>
+                <button onClick={this.removeAll}>Remove All</button>
+                {
+                    this.props.options.map((option) => <Option key={option} optionText={option} />)
+                }
+            </div>
+        )
+    }
+}
+class Option extends React.Component {
+    render() {
+        return (
+            <div>
+                <p>{this.props.optionText}</p>
+                <button>Remove</button>
+            </div>
+        )
+    }
+}
+
+class AddOption extends React.Component {
+    submitAction(event) {
+        event.preventDefault();
+        let input = event.target.elements.option.value.trim();
+        if (input) {
+            alert(input);
+        }
+    }
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.submitAction}>
+                    <input type='text' name='option'></input>
+                    <button>Add Option</button>
+                </form>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+
