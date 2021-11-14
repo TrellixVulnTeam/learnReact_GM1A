@@ -196,3 +196,28 @@ class AddOption extends React.Component {
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
 
+//old syntax
+class OldSyntax {
+    constructor() {
+        this.name = 'Aleks';
+        this.getGreeting = this.getGreeting.bind(this);
+    }
+    getGreeting() {
+        return `Hi ${this.name}`;
+    }
+}
+const oldSyntax = new OldSyntax();
+const getGreeting = oldSyntax.getGreeting;
+console.log(getGreeting())
+
+//New Syntax
+class NewSyntax {
+    name = 'Aleks';
+    getGreeting = () => {
+        return `Hi ${this.name}`;
+    }
+}
+const newSyntax = new NewSyntax();
+const newGreeting = oldSyntax.getGreeting;
+console.log(newGreeting())
+console.log(newSyntax)

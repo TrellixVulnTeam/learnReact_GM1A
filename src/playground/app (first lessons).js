@@ -1,3 +1,9 @@
+// import isSenjorCitizen, { isAdult, canDrink } from "./person";
+
+// console.log(isAdult(20))
+// console.log(canDrink(20))
+// console.log(isSenjorCitizen(20))
+
 // //Variables
 const appRoot = document.getElementById('app');
 const user = {
