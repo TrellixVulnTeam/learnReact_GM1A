@@ -1,0 +1,25 @@
+.header {
+    background   : $off-black;
+    color        : coral;
+    margin-bottom: $s-size;
+    padding      : $m-size 0;
+}
+
+// DEM block element modifier convension
+.header__title {
+    font-size: $l-size;
+    margin   : 0;
+}
+
+.header__subtitle {
+    color      : coral;
+    font-size  : $m-size;
+    font-weight: 500;
+    margin     : 0;
+}
+
+@media (min-width: $desktop-breakpoint) {
+    .header {
+        margin-bottom: $xl-size;
+    }
+}

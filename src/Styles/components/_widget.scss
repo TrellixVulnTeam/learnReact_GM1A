@@ -1,0 +1,28 @@
+//widget
+.widget {
+    background   : $simple-orange;
+    margin-bottom: $xl-size;
+}
+
+
+//widget header
+.widget-header {
+    background     : $orange;
+    color          : blanchedalmond;
+    padding        : $m-size;
+    display        : flex;
+    justify-content: space-between;
+
+}
+
+.widget-header__title {
+    margin: 0;
+}
+
+.message {
+    color        : blanchedalmond;
+    margin       : 0;
+    padding      : $l-size;
+    text-align   : center;
+    border-bottom: 2px solid lighten($color: $simple-orange, $amount: 5%);
+}

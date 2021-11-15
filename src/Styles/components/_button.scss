@@ -1,0 +1,37 @@
+.big-button {
+    background   : coral;
+    border       : none;
+    border-bottom: .4rem solid darken(coral, 5%);
+    color        : blanchedalmond;
+    font-weight  : bold;
+    font-size    : $l-size;
+    width        : 100%;
+    margin-bottom: $s-size;
+    padding      : 2.4rem;
+}
+
+.big-button:disabled {
+    opacity: .5;
+}
+
+.button {
+    background   : coral;
+    border       : none;
+    border-bottom: .2rem solid darken($color:coral, $amount: 5%);
+    color        : blanchedalmond;
+    font-weight  : 500;
+    padding      : $s-size;
+}
+
+.button--link {
+    background: none;
+    border    : none;
+    color     : blanchedalmond;
+    padding   : 0;
+}
+
+@media (min-width: $desktop-breakpoint) {
+    .big-button {
+        margin-bottom: $xl-size;
+    }
+}
